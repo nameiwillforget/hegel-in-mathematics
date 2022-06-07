@@ -29,7 +29,7 @@ One might be surprised to find Hegel's thought in the middle of a deep intersect
 of logic, mathematics and physics, yet it would not have surprised Hegel, who saw in his method something
 with universal applicability. That he even \emph{had} a method and was not just using obtuse language
 without or with trivial meaning was often called into question, particularly by the analytical school,
-starting with Russell in his \emph{History of Western Philosophy}\cite{Russ}:
+starting with Russell in his \emph{History of Western Philosophy}, \cite{Russ}:
 
 \begin{quote}
     The great mathematicians of the seventeenth century were optimistic and anxious for quick results;
@@ -45,7 +45,7 @@ as he defined it, was the concept needed by mathematicians and physicists.
 
 It is ironic that the concepts Russell used in his attack, infinitesimals and ``continuity'', have been
 particularly useful, once re-evaluated through the recent formalization of Hegel's thought in the context
-of modal homotopy type theory. This was work started by William Lawvere in the 1985s\cite{Law96}:
+of modal homotopy type theory. This was work started by William Lawvere in the 1985s, \cite{Law96}:
 
 \begin{quote}
     In early 1985, while I was studying the foundations of homotopy theory, it occurred to me that the
@@ -54,14 +54,14 @@ explicit use of a certain simple categorical structure might serve as a link bet
 \end{quote}
 
 Lawvere went on to provide a formally strict logical calculus that tries to capture Hegelian dialectics
-and started the formalization of Hegel's objective logic \cite{Law91}. However, the mathematical power
+and started the formalization of Hegel's objective logic, \cite{Law91}. However, the mathematical power
 of Lawvere's formalization, though already considerable, was restricted by the mathematics it was founded
 on\footnote{There is also some indication that Lawvere might not actually appreciate the current extension
 of his work due to his dislike of $\infty$-categories.}. More recently, a new foundation of mathematics
 was developed under the initiative of Vladimir Voevodsky in homotopy type theory, which provides an alternative
 to set theory and a setting for logic based on a radical interpretation of equality, which amplifies its
 power and has been found to show remarkable similarity to Hegel's thought. However, the importance of
-these devopments exceeds mathematics and reaches into philosopy. Lawvere stated in 1992\cite{Lawvere92}:
+these devopments exceeds mathematics and reaches into philosopy. Lawvere stated in 1992, \cite{Lawvere92}:
 
 
 \begin{quote}
@@ -78,7 +78,7 @@ This article aims to provide an exposition of the current state of the formaliza
 as continued in particular by Urs Schreiber, as it appeared first in \cite{SQuant} and \cite{SSOrb}. A
 preliminary dictionary has been set up in \cite{nlabsol} \footnote{see also \cite{Stalk}, \cite{SSh} for
 an exposition with particular focus on the role of homotopy type theory, \cite{dcct}, particularly for
-more detail on the mathematical structures and the physics, and section 5 in \cite{Cor}}, but it assumes
+more detail on the mathematical structures and the physics, and section 5 in \cite{Cor}.}, but it assumes
 an understanding of several new mathematical disciplines. Usually it is impossible to explain current
 mathematical research to a layperson, but the particularly intuitive character of the disciplines in question
 might allow doing so in this special case. This is attempted here.
@@ -107,7 +107,7 @@ preferred over Lawvere's. \\
 
 Since it cannot describe the mathematics it is rooted in, this work is inevitably incomplete. As such,
  curious readers are invited to look up the details for themselves. Almost all the material presented
-here is contained in \cite{nlabsol}\footnote{See also }, which also includes some philosophical reflections
+here is contained in \cite{nlabsol}, which also includes some philosophical reflections
 in the introduction which will not be recapitulated since they can be read with ease. If any take up the
 invitation, this work should form a good companion piece to aid the endeavour by providing intuitive guidance.
 
@@ -118,16 +118,16 @@ concrete entities, like numbers, to the structures they inhabit, like groups, to
 those structures and the realms they inhabit, which are categories. However, abstraction did not stop
 there, but went on to define a whole slew of higher categories. These higher categories are where the
 constructions behind our definitions reside. We will however only need the barest fundamentals of category
-theory, for a more comprehensive introduction we refer to \cite{Lein}, see also \cite{CPhil} for a philosophical
-treatment. An ($(\infty, 1)$-)category\footnote{The following definition yields categories when applied
-to normal types, as they are usually understood and explained in the next section. However, when we apply
+theory, for a more comprehensive introduction we refer to \cite{Lein}, see also \cite{CPhil} for a 
+philosophical treatment. An ($(\infty, 1)$-)category\footnote{The following definition yields categories
+when applied to normal types, as they are usually understood and explained in the next section. However, when we apply
 the same definition to homotopy type theory, as explained in \ref{Hott}, we get $(\infty,1)$-categories,
 thus we don't have to define them separately.} consists of a \emph{type} of \emph{objects} $X$ and a type
 of \emph{morphisms} $X\xrightarrow{f} Y$, such that each morphism has a \emph{source} and a \emph{target},
 a morphism $f$ with a target $X$ can be composed with a morphism $g$ with source $X$ to a morphism $f;g$,
 and every object $X$ has a morphism $id_X$ called its \emph{identity}, such that, whenever a morphism
 is composed with $id_X$, the result is equal to the morphism itself: $id_X;f=f$ and $g;id_X=g$. Such objects
-can be identified with Hegel's \emph{Dinge}, expressed as in §1065a (of \emph{Science of Logic} \cite{Sol}):
+can be identified with Hegel's \emph{Dinge}, expressed as in §1065a (of \emph{Science of Logic}, \cite{Sol}):
 
 
 \begin{quote}
@@ -171,7 +171,7 @@ dialectics are \emph{not} of a temporal, but of \emph{causal} manner. These two 
 but in general, causality does not require time, which is why logic can be used when reasoning about mathematical
 objects. This is in line with Hegel's use of the word  ``moment'', which he always used in the neutral
 gender i.e. ``das Moment'', meaning an aspect of something, while he also used ``der Moment'' with usual
-temporal meaning (see also p. 43- 44 in\cite{Kli}). However, the analogy to time inherent in the word
+temporal meaning (see also p. 43- 44 in \cite{Kli}). However, the analogy to time inherent in the word
 is welcome for consequent nomenclature and gives the term a kind of double meaning.}.
 
 Due to idempotency, any type that lies in the image of a moment is \emph{purely of that moment} (and vice
@@ -226,7 +226,7 @@ vice versa, so $\Box\bigcirc=\bigcirc$ and $\bigcirc\Box=\Box$. Thus, a type is 
 and only if it is purely of the other. \\
 
 Adjunctions are category-theoretic concepts and thus can be applied in any suitable 2-category, so that
-an adjunction between a unity of opposites might itself be adjoint to a another unity of opposites\cite{Shu}.
+an adjunction between a unity of opposites might itself be adjoint to a another unity of opposites, \cite{Shu}.
 This ``opposite to a unity'' of opposites $\bigtriangleup_1\dashv\bigtriangleup_2$ is another unity of
 opposites, and their relation will be denoted 
 
@@ -314,12 +314,12 @@ $\Box_1$: $\Box_2\Box_1=\Box_1=\bigcirc_2\Box_1$. \\
 Generally, Aufhebungen are not unique, the same unity can have several of them. The \emph{minimal (left/right)
 Aufhebung} of a unity $\Box\dashv\bigcirc$, the smallest sphere that fulfills the Aufhebungs-condition
 would be unique, but does not always exist\footnote{As usual, we are following \cite{nlabsol} in our terminology.
-Lawvere \emph{defines} an Aufhebung as being minimal\cite{Lawvere92}. However, in light of the following
+Lawvere \emph{defines} an Aufhebung as being minimal, \cite{Lawvere92}. However, in light of the following
 derivation of unities this seems too restrictive a notion.}.
 
 
 \section{\emph{Subjektive Logik} as Type Theory}
-Following the work of Martin-Löf \cite{Loef96}, Schreiber identifies the part of Hegelian logic which
+Following the work of Martin-Löf, \cite{Loef96}, Schreiber identifies the part of Hegelian logic which
 he calls ``subjektive Logik'' and which has been understood as classical logic, in his formalization with
 the deductive part of type theory, and extends to type theory in general. A ``Begriff'' is here understood
 as a type. For this identification it should be noted that to each logical proposition $p$ a type $T$
@@ -363,7 +363,7 @@ type $s=_{S} s^{\prime}$ to $m(s)=_T m(s^{\prime})$, satisfying a condition that
 not matter whether an equality is transported along another equality before or after applying a morphism.
 Furthermore, there is always at least one equality $id_t$ for each constituent $t$ to a type $T$ and a
 morphism always maps $id_t$ to $id_{m(t)}$. This fits well with the \emph{First Law of Thought} that Hegel
-imported from Fichte \cite{Fichte}:
+imported from Fichte, \cite{Fichte}:
 
 \begin{quote}
     Alles ist sich selbst gleich; A = A.
@@ -607,7 +607,7 @@ its negative, as well as their relation. This is not generally true for unities 
 \subsection{Quantity and Quality}
 Given the unity of becoming $\varnothing\dashv *$, we can now derive a sequence of new unities starting with 
 its minimal Aufhebung. We begin this sequence of derivations by with the smallest moment that contains both 
-$\varnothing$ and $*$, which is the \emph{double negation} modality\cite{Sketches} \footnote{This terminology
+$\varnothing$ and $*$, which is the \emph{double negation} modality, \cite{Sketches}\footnote{This terminology
 stems from mathematical logic and is not to be confused with the Hegelian negative.}. The sub-universe 
 $\mathcal{U}_\sharp$ that is invariant under $\sharp$ is the largest sub-universe in which the law of the 
 excluded middle holds. Thus, if our new unity is supposed to be non-trivial, the internal logic of our 
@@ -689,13 +689,13 @@ Hegel writes of this unity in §398:
 
 Since the spatial structure of $\sharp X$ is trivial, morphisms into it are completely determined by the 
 values of their points. These objects\footnote{As well as their subobjects.} are identified with the 
-\emph{intensive quantities} of Lawvere\cite{Law82}, Grassmann\cite{Grass} and Hegel. Furthermore, the 
+\emph{intensive quantities} of Lawvere, \cite{Law82}, Grassmann, \cite{Grass}, and Hegel. Furthermore, the 
 negative $\overline{\sharp} X$ of $\sharp X$ consists purely of the structure that makes $X$ spatial, thus 
 the local aspects of $X$. So these are identified with \emph{extensive quantities}. A morphism on a space $X$
 into an intensive quantity $\sharp X$ can be described as something that associates to each point of $X$ a
 quantity, while a function into $\overline{\sharp} X$ associates a quantity to volumina of $X$. One way to 
 understand how intensive and extensive quantities work is in relation to the decomposition of a system into
-subsystems\cite{nlabie}: given a system $S_0$ that can be decomposed into two\footnote{Of course, a
+subsystems, \cite{nlabie}: given a system $S_0$ that can be decomposed into two\footnote{Of course, a
 decomposition of any cardinality can be assumed.} sub-systems $S_1$ and $S_2$, the value of an extensive
 quantity $Q$ on $S_0$ is equal to the sum of the values of the quantity on $S_1$ and $S_2$. An example is the
 mass of a body or the length of a text. Meanwhile, an intensive quantity $q$ has a value $v_0$ on the system
@@ -734,12 +734,16 @@ and has its own left opposite $\textrm{\textesh}\dashv\flat$, so that $\textrm{\
     Attraction is in this way the moment of continuity in quantity.
 \end{quote}
 
-identified with the \emph{moment of attraction}. In models we will demand that the modality 
+identified with the \emph{moment of attraction}. Since $\textrm{\textesh}\dashv\flat$ is an $sp$-unity, 
+$\textrm{\textesh}$ lands in the same spaces as $\flat$, so a space $\textrm{\textesh} X$ is discrete. In 
+models we will demand that the modality 
 $\textrm{\textesh}$ is the localization of the path object of the topos, so that the \emph{shape} 
-$\textrm{\textesh} X$ of a space is in fact its homotopical shape, or, by the considerations of \ref{Hott}, 
-the invariant of $X$ under contraction. This interaction between the two different spatial structures of $X$,
+$\textrm{\textesh} X$ of a space is in fact its , in the sense that $\textrm{\textesh} X$ 
+contracts all points that are connected to each other through a path to the same point, so $\textrm{\textesh}
+X$ becomes discrete, but it remembers each path between points as an equality in its homotopical shape, as in
+\ref{Hott}\footnote{This interaction between the two different spatial structures of $X$,
 that of its local structure (which is induced by its local elements) and its structure of homotopic equality,
-is of crucial importance in topology. Thus, the moment of attraction can be understood as the internal
+is of crucial importance in topology.}. Thus, the moment of attraction can be understood as the internal
 contraction within the fabric of $X$ taking over and $X$ contracting as much as possible while still not
 losing its shape. The unity of opposites $\textrm{\textesh}\dashv\flat$, and, more concretely, the
 \emph{points to pieces transform} $\flat X\rightarrow X\rightarrow \textrm{\textesh} X$ is understood as
@@ -755,7 +759,7 @@ describing ``the difference of the one and the many'' as in Hegel §361:
 
 and is identified with \emph{quality}, as it captures the quality that makes a space $X$ different from a
 homotopy type. Overall, the system of modalities $\textrm{\textesh}\dashv\flat\dashv\sharp$ has been termed
-\emph{cohesion} and the objects it acts on as \emph{cohesive substance} by Lawvere\cite{Coh}\footnote{More
+\emph{cohesion} and the objects it acts on as \emph{cohesive substance} by Lawvere, \cite{Coh}\footnote{More
 precisely, Lawvere defined the functors underlying the modalities, Schreiber identified them with
 modalities.}, and identified by Schreiber with \emph{measure} as in Hegel 699:
 
@@ -910,7 +914,7 @@ primary differences between fermions and bosons are that bosons are massless, mo
 of them can be at the same place even if they have the same properties, whereas fermions have mass, can never
 obtain lightspeed and no two of them can be at the same place if they otherwise have the same properties.
 This leads to fermions making up matter and bosons making up forces. Thus, in the dictionary, the bosonic
-modality is identified with \emph{light}, as in §220 of \emph{Philosophy of Nature} (PoN)\cite{EoS}:
+modality is identified with \emph{light}, as in §220 of \emph{Philosophy of Nature} (PoN), \cite{EoS}:
 
 \begin{quote}
     Als das abstrakte Selbst der Materie ist das Licht das absolute-leichte, und als Materie ist sie unendliches Außersichsein aber als reines Manifestieren, materielle Idealität untrennbares und einfaches Außersichsein.
