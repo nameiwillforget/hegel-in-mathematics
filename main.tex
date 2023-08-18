@@ -1,22 +1,11 @@
 \documentclass{article}
-\usepackage[utf8]{inputenc}
-\usepackage{hyperref}
-\usepackage{tipa}
-\usepackage{extpfeil}
-\usepackage[new]{old-arrows}
-\usepackage{biblatex}
-\addbibresource{source.bib}
+\usepackage{cttools}
 
-%     If you need symbols beyond the basic set, uncomment this command.
-\usepackage{amssymb}
-
-%     If your article includes graphics, uncomment this command.
-\usepackage{graphicx}
-\usepackage{url}
+\addbibresource{sources.bib}
 
 \title{Hegel in Mathematics}
 \author{Alexander Prähauser}
-\date{May 2022}
+\date{\today}
 
 \begin{document}
 
@@ -62,7 +51,7 @@ of Lawvere's formalization, though already considerable, was restricted by the m
 on.\footnote{There is also some indication that Lawvere might not actually appreciate the current extension
 of his work due to his dislike of $\infty$-categories.} More recently, a new foundation of mathematics
 was developed under the initiative of Vladimir Voevodsky in homotopy type theory, which provides an alternative
-to set theory and a setting for logic based on a radical interpretation of equality, which amplifies its
+to set theory and a setting for logic based on a radical interpretation of equality that amplifies its
 power and has been found to show remarkable similarity to Hegel's thought. However, the importance of
 these devopments exceeds mathematics and reaches into philosopy. Lawvere stated in 1992 \cite{Lawvere92}:
 
@@ -98,19 +87,19 @@ which they are used should be taken as a first implicit definition or descriptio
 denoting. Readers are advised to use the meaning of a word they intuit, and allow it to
 be modified throughout the text. Objects will often be denoted by letters, with similar letters denoting 
 similar objects. For instance, propositions will be denoted by $p$ and $q$, while types will be denoted $T$ 
-and $S$.\\
+and $S$. 
 
 Then, should the focus be on the current theory, or on Hegel's relationship to it? The foremost
 purpose of this work is its applicability, thus exposition on the theory is generally preferred. However,
 quotes which are relevant for the identification of Hegel's terms with mathematical constructions are
 usually given, both in the original German and English, though this had the side effect of increasing
 the length of the work. We will be using the translation of A. V. Miller and importing its paragraph numbering.
-\\
+ 
 
 It should be noted that this text is an exposition of the current (and ongoing, though somewhat stalled)
 formalization of Hegel's work as extended by Urs Schreiber and others, \emph{not} of Lawvere's original
 formalization, so when terminology between Lawvere and Schreiber is in conflict, current terminology is
-preferred over Lawvere's. \\
+preferred over Lawvere's.  
 
 
 Since it cannot describe the mathematics it is rooted in, this work is inevitably incomplete. As such,
@@ -124,7 +113,7 @@ The importance of a mathematical formalization of Hegel for anyone interested in
 simplicity and exactness, making it completely understandable without any ambiguity, and thus undeniable
 without denying mathematics. This formalization, furthermore, opens connections between Hegelian thought and
 current physics and mathematics, and can be used as a means to understand, in particular, geometry on a
-highly conceptiual level. As noted by Schreiber, a formalization of Hegel has to inevitably contain some
+highly conceptual level. As noted by Schreiber, a formalization of Hegel has to inevitably contain some
 degree of arbitrariness. However, if Hegel claims to define a kind of logic, then his work should be
 interpretable from a logical context. The fact that this can be done is significant.
 
@@ -132,7 +121,7 @@ interpretable from a logical context. The fact that this can be done is signific
 \section{Category-theoretic preliminaries}
 Over the past century, mathematics went through a rapid increase in expressiveness, as it subsumed not
 just \emph{quantities} like numbers, but also \emph{qualitative} meaning, as the focus shifted first from
-concrete entities, like numbers, to the structures they inhabit, like groups, to the relationships between
+concrete entities, like numbers, to the structures they inhabit, like groups, and on to the relationships between
 those structures and the realms they inhabit, which are categories. However, abstraction did not stop
 there, but went on to define a whole slew of higher categories. These higher categories are where the
 constructions behind our definitions reside. We will however only need the barest fundamentals of category
@@ -141,9 +130,9 @@ philosophical treatment. An category,\footnote{The following definition yields c
 when applied to normal types, as they are usually understood. However, when we apply
 the same definition to homotopy type theory, as explained in \ref{Hott} we get $(\infty,1)$-categories,
 thus we don't have to define them separately.} consists of a \emph{type} of \emph{objects} $X$ and a type
-of \emph{morphisms} $X\xrightarrow{f} Y$, such that each morphism has a \emph{source} and a \emph{target}. Furthermore, a morphism $f:X\rightarrow Y$ with a target $Y$ can be composed with a morphism $g:Y\rightarrow Z$ with source $Z$ to a morphism $f;g:X\rightarrow Z$,
+of \emph{morphisms} $X\xrightarrow{f} Y$, such that each morphism has a \emph{source} and a \emph{target}. Furthermore, a morphism, usually called $f$ or $g$ and denoted as an arrow $f: X\rightarrow Y$ from its source $X$ to a target $Y$ can be composed with a morphism $g:Y\rightarrow Z$ with source $Y$ to a morphism $f\fcmp g:X\rightarrow Z$,
 and every object $X$ has a morphism $id_X:X\rightarrow X$ called its \emph{identity}, such that, whenever a morphism
-is composed with $id_X$, the result is equal to the morphism itself: $id_X;f=f$ and $g;id_X=g$. Such objects
+is composed with $id_X$, the result is equal to the morphism itself: $id_X\fcmp f = f$ and $g\fcmp id_X = g$. Such objects
 can be identified with Hegel's \emph{Dinge}, expressed as in §1065a (of \emph{Science of Logic} \cite{Sol}):
 
 
@@ -157,15 +146,15 @@ die Eigenschaft ist diese Wechselbeziehung selbst, und das Ding ist nichts auße
 is this reciprocal relation itself and apart from it the thing is nothing;
 \end{quote}
 
-so the ``nature'' of an object in category theory is completely determined by its relations to other objects.\footnote{However,
+as the ``nature'' of an object in category theory is completely determined by its relations to other objects.\footnote{However,
 a mathematical object can live in different categories at once, if it allows, or necessitates, several
 different kinds of structures. For instance, the ``real numbers'' are a field, and as such live in the
 category of fields, but they are also a total order, so they live in the category total orders. If an
 object lives in several categories at once, the internal properties of the object often give rise to relations
-between the categories it is living in.} In this sense, category theory can be seen as a formalization
-of mathematical \emph{structuralism} (see also \cite{Ad03}). \\
+between the categories it is living in.} In this sense, category theory can also be seen as a formalization
+of mathematical \emph{structuralism} (see \cite{Ad03}).  
 
-We will mostly be focused on one particular (kind of) category, the \emph{universe of types}.\footnote{Of
+We will mostly be focused on one particular (kind of) category, the \emph{universe of types}, where types are the structures as first developed by Russell and nowadays commonly used in computer science.\footnote{Of
 course, this is a \emph{mathematical} universe that houses \emph{mathematical} structures, we will only
 get to our physical universe at the very end.} There are several possible candidates for such a category,
 and we will not make a choice yet. Rather, we will outline the \emph{theory} that has to be satisfied
@@ -176,12 +165,12 @@ by such a choice, and choose a \emph{model} later.
 Using category theory, we can explain Schreiber's formulation of Lawvere's formalization of Hegelian dialectics.
 For this, what Hegel calls a ``Moment'' is formalized as a (co)modality on a category \footnote{In later
 sections we will mainly look at universes of types, but the potential applicability of Lawvere's calculus
-is much more general.}$C$: an operator $\Box$ that maps an object $X$ of $C$ to an object $\Box X$ called
-the \emph{aspect} of $X$ under $\Box$, maps a morphism $Y\xrightarrow{f} X$ to a morphism $\Box Y\xrightarrow{\Box(f)}\Box
-X$ between the aspects of $X$ and $Y$, and is idempotent: $\Box\Box =\Box$, together with, for each object $X$, a morphism between $X$ and
-the image of $X$ under the operator: $\Box X\rightarrow X$ or $X\rightarrow \bigcirc(X)$. The direction
+is much more general.}$C$: an operator $\unitsq$ that maps an object $X$ of $C$ to an object $\unitsq X$ called
+the \emph{aspect} of $X$ under $\unitsq$, maps a morphism $Y\xrightarrow{f} X$ to a morphism $\unitsq Y\xrightarrow{\unitsq(f)}\unitsq
+X$ between the aspects of $X$ and $Y$, and is idempotent: $\unitsq\unitsq =\unitsq$, together with, for each object $X$, a morphism between $X$ and
+the image of $X$ under the operator: $\unitsq X\rightarrow X$ or $X\rightarrow \bigcirc(X)$. The direction
 of this morphism depends on whether the moment is a modality or a comodality. We will call moments of the
-form $\Box(X)\rightarrow X$ \emph{previous} moments and denote them by $\Box$, while we call moments of
+form $\unitsq(X)\rightarrow X$ \emph{previous} moments and denote them by $\unitsq$, while we call moments of
 the form $X\rightarrow \bigcirc(X)$ \emph{successive} moments.\footnote{The \emph{preceding} and \emph{successive}
 terminology, as well as definitions building on it, are original work.}\footnote{Please note that these
 dialectics are \emph{not} of a temporal, but \emph{causal} manner. These two overlap in our universe,
@@ -189,22 +178,26 @@ but in general, causality does not require time, which is why logic can be used 
 objects. This is in line with Hegel's use of the word  ``moment'', which he always used in the neutral
 gender i.e. ``das Moment'', meaning an aspect of something, while he also used ``der Moment'' with usual
 temporal meaning (see also p. 43- 44 in \cite{Kli}). However, the analogy to time inherent in the word
-is welcome for consequent nomenclature and gives the term a kind of double meaning.} \\
+is welcome for consequent nomenclature and gives the term a kind of double meaning.}  
 
 Due to idempotency, any type that lies in the image of a moment is \emph{purely of that moment} (and vice
-versa): $Y=\Box X \Leftrightarrow \Box Y =Y$. Thus, the types that are invariant under a moment form their
-own sub-category: $C_\Box\hookrightarrow C$. The image $\Box X $ of a type $X$ under that moment should
-be thought of as ``the best possible approximation of $X$ in $C_\Box$'' or the $\Box$-aspect of $X$, and
-the transformation $\Box X \rightarrow X$ (resp. $X\rightarrow \bigcirc X$), depending on the exact nature
-of the moment, either a deduction of $X$ from $\Box  X $ ($\bigcirc X $ from $X$), an embedding of $\Box
+versa): $Y = \unitsq X \Leftrightarrow \unitsq Y = Y$. Thus, the types that are invariant under a moment form their
+own sub-category: $C_\unitsq\hookrightarrow C$. The image $\unitsq X $ of a type $X$ under that moment should
+be thought of as ``the best possible approximation of $X$ in $C_\unitsq$'' or the $\unitsq$-aspect of $X$, and
+the transformation $\unitsq X \rightarrow X$ (resp. $X\rightarrow \bigcirc X$), depending on the exact nature
+of the moment, either a deduction of $X$ from $\unitsq  X $ ($\bigcirc X $ from $X$), an embedding of $\unitsq
 X $ into $X$ ($X$ into 
-$\bigcirc X$), or a construction/deformation that makes $\Box X$ into $X$ ($X$ into $\bigcirc X$). \\
+$\bigcirc X$), or a construction/deformation that makes $\unitsq X$ into $X$ ($X$ into $\bigcirc X$).  
 
 From a category-theoretic
-perspective, this state of affairs can be understood as saying that a moment $\Box$ can be decomposed into a \emph{projection}
-of $C$ onto another category $C_\Box:$
-$$C\twoheadrightarrow C_\Box$$
-and an \emph{embedding} of $C_\Box$ into $C$ $$C_\Box\hookrightarrow C.$$
+perspective, this state of affairs can be understood as saying that a moment $\unitsq$ can be decomposed into a \emph{projection}
+of $C$ onto another category $C_\unitsq$, identifying objects if they have are the same in regards to the aspect $\unitsq$:
+
+$$C\twoheadrightarrow C_\unitsq$$
+
+and an \emph{embedding} of $C_\unitsq$ into $C$, assigning to each aspect a representative in $C$:
+
+$$C_\unitsq\hookrightarrow C.$$
 
 Now, the concept of a \emph{unity of opposites} is translated into a pair of moments $\bigtriangleup_1\dashv\bigtriangleup_2$
 that fulfill the \emph{adjointness condition}: for any two objects $X,Y$ and each morphism $\bigtriangleup_1
@@ -212,38 +205,38 @@ Y\rightarrow X$, there exists a morphism $Y\rightarrow \bigtriangleup_2 X$, and 
 naturality condition. Adjunctions are deep structures that can be expressed in a variety of ways, this
 being the most concrete, and the reader cannot be expected to immediately grasp the meaning of the adjointness
 condition. However, some of its consequences can be used for better understanding. For instance, it follows
-that if one of the $\bigtriangleup_i$ is a preceding moment $\Box$, then the other is a successive moment
+that if one of the $\bigtriangleup_i$ is a preceding moment $\unitsq$, then the other is a successive moment
 $\bigcirc$ and vice versa, so that a unity of opposites is either a \emph{unity of a preceding to an opposite
-successive moment} (or \emph{ps-unity} for  short) of the form $\Box\dashv\bigcirc$ or a \emph{unity of
-a successive to an opposite preceding moment} (or \emph{sp}-unity) $\bigcirc\dashv\Box$. So a unity of
+successive moment} (or \emph{ps-unity} for  short) of the form $\unitsq\dashv\bigcirc$ or a \emph{unity of
+a successive to an opposite preceding moment} (or \emph{sp}-unity) $\bigcirc\dashv\unitsq$. So a unity of
 opposites is made up of moments that are actually of opposite kinds (preceding to successive), and two
 opposite kinds of unities of opposites exist. Furthermore, one part of a unity of opposites uniquely
 determines
-the other in that, if, for a moment $\Box$, $\Box\dashv\bigcirc_1$ and $\Box\dashv\bigcirc_2$, then $\bigcirc_1$ and $\bigcirc_2$
+the other in that if, for a moment $\unitsq$ both $\unitsq\dashv\bigcirc_1$ and $\unitsq\dashv\bigcirc_2$ hold, then $\bigcirc_1$ and $\bigcirc_2$
 are equal, and the other way around (however, a moment can have both a left and a right opposite, so the
 opposition is actually directed). Each type $X$ sits in between its preceeding and successive aspects
 (let us call this the \emph{aspect sequence of the unity}): 
 
-$$\Box X\rightarrow X \rightarrow\bigcirc X.$$
+$$\unitsq X\rightarrow X \rightarrow\bigcirc X.$$
 
-Finally, the two sub-universes $C_\Box ,\ C_\bigcirc$ determined by the modalities are both equal \emph{without
+Finally, the two sub-universes $C_\unitsq ,\ C_\bigcirc$ determined by the modalities are both equal \emph{without
 the context of the surrounding universe $C$}, so their opposition actually lies in their relationship
 to the larger category, and to be opposites they have to be the same. More precisely, we can, recalling
 the decomposition of moments into a projection and an embedding we saw before, say that the opposites
-of a unity share each one of their morphisms, and describe the situation in the following way: a $ps$-unity
-$\Box\dashv\bigcirc$ consists of \emph{two} embeddings of the same sub-universe $C_\Box=C_\bigcirc$ into
+of a unity share each one of their morphisms and describe the situation in the following way: a $ps$-unity
+$\unitsq\dashv\bigcirc$ consists of \emph{two} embeddings of the same sub-universe $C_\unitsq=C_\bigcirc$ into
 the universe $C$ and \emph{one} projection from $C$ onto $\mathcal{V}$:
 
-$$C_\Box\stackrel{\longhookrightarrow{}}{\stackrel{\xtwoheadleftarrow{}}{\longhookrightarrow{}}}C$$
+$$C_\unitsq\stackrel{\longhookrightarrow{}}{\stackrel{\xtwoheadleftarrow{}}{\longhookrightarrow{}}}C$$
 
 while an $sp$-unity consists of \emph{one} embedding of $\mathcal{V}$ into $C$ and \emph{two} projections
 of $C$ onto $\mathcal{V}$:
 
-$$C_\Box\stackrel{\xtwoheadleftarrow{}}{\stackrel{\longhookrightarrow}{\xtwoheadleftarrow{}}}C$$
+$$C_\unitsq\stackrel{\xtwoheadleftarrow{}}{\stackrel{\longhookrightarrow}{\xtwoheadleftarrow{}}}C$$
 
-From this follows in particular that in an $sp$-unity $\Box\bigcirc X=\Box\Box Y=\Box Y= \bigcirc X$ and
-vice versa, so $\Box\bigcirc=\bigcirc$ and $\bigcirc\Box=\Box$. Thus, a type is purely of one moment if
-and only if it is purely of the other. \\
+From this follows in particular that in an $sp$-unity $\unitsq\bigcirc X=\unitsq\unitsq Y=\unitsq Y= \bigcirc X$ and
+vice versa, so $\unitsq\bigcirc=\bigcirc$ and $\bigcirc\unitsq=\unitsq$. Thus, a type is purely of one moment if
+and only if it is purely of the other.  
 
 Adjunctions are category-theoretic concepts and thus can be applied in any suitable 2-category, so that
 an adjunction between a unity of opposites might itself be adjoint to a another unity of opposites \cite{Shu}.
@@ -262,13 +255,13 @@ $$
   \,.
 $$
 
-From the uniqueness of adjoints follows that in such a configuration, the left moment of the first unity
+From the uniqueness of adjoints follows that in such a configuration the left moment of the first unity
 has to be equal to the right moment of the second unity: $\bigtriangleup_1=\bigtriangleup_4$. So each
-unity of opposites of unities takes the form of a string of modalities $\Diamond\dashv\Box\dashv\bigcirc$
-or $\bigstar\dashv\bigcirc\dashv\Box$. We could ask for even higher opposites, but examples are rare and
+unity of opposites of unities takes the form of a string of modalities $⋄\dashv\unitsq\dashv\bigcirc$
+or $\bigstar\dashv\bigcirc\dashv\unitsq$. We could ask for even higher opposites, but examples are rare and
 largely in categories with exotic or no logics.\footnote{For instance, the forgetful functor of the category
 of modules of a projective algebra is part of a five-fold adjunction. It could be interesting to see how
-it interacts with their internal type theory.} \\
+it interacts with their internal type theory.}  
 
 The other significant relation between unities of opposites is that of Aufhebung. Following (Schreiber's
 formalization of) Hegel, we say a unity of opposites $\bigtriangleup_3\dashv\bigtriangleup_4$ is a \emph{higher
@@ -292,21 +285,21 @@ $$
 
 if $\bigtriangleup_1$ is contained in $\bigtriangleup_3$: $\bigtriangleup_3\bigtriangleup_1=\bigtriangleup_1$
 and $\bigtriangleup_2$ is contained in $\bigtriangleup_4$: $\bigtriangleup_4\bigtriangleup_2=\bigtriangleup_2$.
-A higher sphere $\Box_2\rightarrow\bigcirc_2$ of a unity $\Box_1\rightarrow\bigcirc_1$ is a \emph{right
-Aufhebung} of $\Box_1\rightarrow\bigcirc_1$ if furthermore $\Box_1$ is contained in $\bigcirc_2$: $\bigcirc_2\Box_1=\Box_1$
-and a \emph{left Aufhebung} if $\bigcirc_1$ is contained in $\Box_2$: $\Box_2\bigcirc_1=\bigcirc_1$. Both
-kinds can be referred to as \emph{Aufhebungen} We can similarly define Aufhebungen for $sp$-unities $\bigcirc\dashv\Box$,
+A higher sphere $\unitsq_2\rightarrow\bigcirc_2$ of a unity $\unitsq_1\rightarrow\bigcirc_1$ is a \emph{right
+Aufhebung} of $\unitsq_1\rightarrow\bigcirc_1$ if furthermore $\unitsq_1$ is contained in $\bigcirc_2$: $\bigcirc_2\unitsq_1=\unitsq_1$
+and a \emph{left Aufhebung} if $\bigcirc_1$ is contained in $\unitsq_2$: $\unitsq_2\bigcirc_1=\bigcirc_1$. Both
+kinds can be referred to as \emph{Aufhebungen}. We can similarly define Aufhebungen for $sp$-unities $\bigcirc\dashv\unitsq$,
 however, since in an $sp$-unity both moments project into the same sub-universe, each higher sphere of
-$\bigcirc\dashv\Box$ is already both a left and a right Aufhebung. We will denote a right Aufhebung as
+$\bigcirc\dashv\unitsq$ is already both a left and a right Aufhebung. We will denote a right Aufhebung as
 
 
 $$
   \begin{array}{cccc}
-    \Box_2 &\dashv& \bigcirc_2
+    \unitsq_2 &\dashv& \bigcirc_2
     \\
     \vee & & \vee
     \\
-    \Box_1 & & \dashv& \bigcirc_1
+    \unitsq_1 & & \dashv& \bigcirc_1
     \end{array}
   \ 
 $$
@@ -315,27 +308,30 @@ and a left Aufhebung as
 
 $$
   \begin{array}{cccc}
-     & \Box_2 & \dashv & \bigcirc_2
+     & \unitsq_2 & \dashv & \bigcirc_2
     \\
      & \vee & & \vee
     \\
-    \Box_1 & \dashv & & \bigcirc_1
+    \unitsq_1 & \dashv & & \bigcirc_1
     \end{array}
   \ 
 $$
 
-So an Aufhebung of $\Box_1\dashv\bigcirc_1$ is a unity of opposites $\Box_2\dashv\bigcirc_2$ such that
-$\Box_1$ is a special aspect of $\Box_2$ and $\bigcirc_1$ is a special aspect of $\bigcirc_2$, but where
-\emph{also} both $\bigcirc_1$ and $\bigcirc_2$ are special aspects of one of the aspects of $\Box_2\dashv\bigcirc_2$,
+So an Aufhebung of $\unitsq_1\dashv\bigcirc_1$ is a unity of opposites $\unitsq_2\dashv\bigcirc_2$ such that
+$\unitsq_1$ is a special aspect of $\unitsq_2$ and $\bigcirc_1$ is a special aspect of $\bigcirc_2$, but where
+\emph{also} both $\bigcirc_1$ and $\bigcirc_2$ are special aspects of one of the aspects of $\unitsq_2\dashv\bigcirc_2$,
 let's say $\bigcirc_2$, so that they are unified in $\bigcirc_2$ and both on the same side of a greater
-opposition. From this follows that the opposition $\Box_2\dashv\bigcirc_2$ is trivial on, in this case,
-$\Box_1$: $\Box_2\Box_1=\Box_1=\bigcirc_2\Box_1$. Please note that this construction captures all three meanings of the German word \emph{Aufheben}: to lift, to preserve and to negate. \\
+opposition. From this follows that the opposition $\unitsq_2\dashv\bigcirc_2$ is trivial on, in this case,
+$\unitsq_1$: $\unitsq_2\unitsq_1=\unitsq_1=\bigcirc_2\unitsq_1$. Please note that this construction captures all three meanings of the German word \emph{Aufheben}: to lift, to preserve and to negate.  
 
 Generally, Aufhebungen are not unique, the same unity can have several of them. The \emph{minimal (left/right)
-Aufhebung} of a unity $\Box\dashv\bigcirc$, the smallest sphere that fulfills the Aufhebungs-condition
+Aufhebung} of a unity $\unitsq\dashv\bigcirc$, the smallest sphere that fulfills the Aufhebungs-condition
 would be unique, but does not always exist.\footnote{As usual, we are following \cite{nlabsol} in our terminology.
 Lawvere \emph{defines} an Aufhebung as being minimal, see \cite{Lawvere92}. However, in light of the following
 derivation of unities this seems too restrictive a notion.}
+
+
+
 
 
 \section{\emph{Subjektive Logik} as Type Theory}
@@ -346,13 +342,13 @@ as a type. For this identification it should be noted that to each logical propo
 can be associated as the ``type of reasons $p$ is true'', so that a \emph{constituent} $t$ of $T$ can be
 understood as a ``reason'' $p$ is true. We will call this the \emph{internal logical perspective on types}.
 From this perspective, type theory is an extension of first order logic
-(often assumed without the law of the excluded middle $\neg\neg p \Rightarrow p$, a point we will return
+(often assumed without the \emph{law of the excluded middle}, that either a proposition is true or its negation $p ∨ ¬p$ or equivalently that from the untruth of the negation of a proposition follows the proposition itself $¬¬p \Rightarrow p$, a point we will return
 to): if $T$ contains the reasons a proposition $p$ is true and $S$ contains the reasons $q$ is true, then
 a morphism $m:T\rightarrow S$, which associates to each constituent $t$ of $T$ a constituent $m(t)$ of
 $S$, can be understood as a \emph{deduction} of $q$ from $p$, interpreting each reason $p$ is true as a reason $q$ is true, and be identified with Hegel's \emph{Urteil}
 (judgement). Similarly, logical conjunction, disjunction and negation have type-theoretic equivalents.
 The passage from ``reasons'' for a proposition $p$ to simply asking whether $p$ is true consists then
-of a simple operation that can be accomplished within type theory. \\
+of a simple operation that can be accomplished within type theory.  
 
 However, a type can \emph{also} be understood as a \emph{context} for logic. We will call this the 
 \emph{external perspective on types}, and it is closely interlinked with the internal perspective. In this 
@@ -362,61 +358,60 @@ identification, it should be noted that the mathematical term ``type'' is abstra
 mathematical
 structure'', and one way to understand a type is as the container of a type of mathematical structure.
 Then type theory is a means of applying logic in the context of a type of structure. This way, type theory
-can be used as an alternative to \emph{set theory}. \\
+can be used as an alternative to \emph{set theory}.  
 
 
 \section{\emph{Wesen} as Homotopy Type Theory}\label{Hott}
-We will now discuss homotopy type theory, which we identify with the Hegelian notion of \emph{Wesen},\footnote{Translated,
-not very faithfully, as ``essence''.} though we will only fully justify the identification at the end of \ref{Wesen}.
+We will now discuss homotopy type theory, which we identify with Hegel's notion of \emph{Wesen},\footnote{Translated as ``essence'' by Miller.} though we will only fully justify the identification at the end of \ref{Wesen}.
 Of course, we can only give a very brief introduction to homotopy type theory, a more complete one is
-given in \cite{Shuhott}. \\
+given in \cite{Shuhott}.  
 
 The revolutionary advancement of homotopy type theory over traditional logic
 is to treat equality not as a property but as a structure. Concretely, this means the following: for any
 two constituents $s,t$ of a type $T$,\footnote{But \emph{not} for constituents of different types, in other
 words, constituents of different types are not just not equal, the question of whether they are equal
 cannot even be asked, at least without the context of a morphism between the two types.} there exists
-a type $s=_T t$ of \emph{equalities} of $s$ and $t$. Of course, for any two constituents of $s=_T t$ a
-similar type of equalities exists, and so on. One way equality has traditionally been understood is as
+a type $s=_T t$ of \emph{equalities} of $s$ and $t$. Applying this requirement to itself we see that for any two constituents of $s=_T t$ a
+similar type of equalities has to exist, and so on. One way equality has traditionally been understood is as
 the strongest possible equivalence relation. In homotopy type theory, this is translated to saying that,
 given an equality $e:s=_T t$ between two constituents $s$ and $t$, each property that holds for a constituent
 $s$ has to also hold for constituent $t$ \emph{once it has been transported along $e$}. In particular,
-if there are two equalities $e:s=_T t$ and $f:t=_T s$, then \emph{$f$ yields an equality $e^{-1};f:t=_T t$ of $t$ to
-itself once it has been transported along $e$}. Furthermore, there is always at least one equality $id_t$ for each constituent $t$ of a type $T$ and a morphism always maps $id_t$ to $id_{m(t)}$.\footnote{Please note the similarity between the definition of equalities of constituents and that of morphisms of a category.} \\
+if there are two equalities $e:s=_T t$ and $f:t=_T s$, then \emph{$f$ yields an equality $e^{-1}\fcmp f: t =_T t$ of $t$ to
+itself once it has been transported along $e$}. Furthermore, there is always at least one equality $id_t$ for each constituent $t$ of a type $T$ and a morphism always maps $id_t$ to $id_{m(t)}$.\footnote{Please note the similarity between the definition of equalities of constituents and that of morphisms of a category.}  
 
 We can now define a \emph{morphism of homotopy types} $m:S\rightarrow T$ 
 recursively as a mapping that associates to each constituent $s$ of $S$
 a constituent $m(s)$ of $T$ along with, for each pair of constituents $s,s^{\prime}$, a morphism of homotopy types from
  $s=_{S} s^{\prime}$ to $m(s)=_T m(s^{\prime})$, satisfying a condition that expresses that it does
-not matter whether an equality is transported along another equality before or after applying a morphism. \\
+not matter whether an equality is transported along another equality before or after applying a morphism.  
 
 
 The homotopy-theoretic interpretation of equality can be visualized by imagining a type $T$ as a space,
 constituents $s,t:T$ as points within this space and equalities $e,f:s=_T t$ as paths between the points
 $s$ and $t$. The canonical identity $id_t$ of a constituent $t$ then corresponds to the constant path
 on a point. An equality $f:s =_T t$  that is transported along another equality $e:t =_T s$ to give a
-self-equality $e;f:t=_T t$ is visualized as, in a space with two points $s,t$ and two paths $e,f$
+self-equality $e\fcmp f: t =_T t$ is visualized as, in a space with two points $s,t$ and two paths $e,f$
 between them, first going along $e$ from $t$ to $s$, then along $f$ from $s$ to $t$, so going around a
 loop that starts and stops at $t$. A higher equality $\alpha:s=_T t$ could be visualized as a surface
 between the paths $e$ and $f$, and so on. In particular, $T$ contains only one constituent if and only
 if its visualization is \emph{connected}. A morphism between homotopy types then maps points to points,
 paths to paths, surfaces to surfaces, and so on. Two homotopy types are equivalent if and only if they
-both have the same form once their fabric has been contracted as much as possible without glueing in new
+both have the same form once their fabric has been contracted as much as possible without gluing in new
 fabric anywhere, or, equivalenty, if they have the same $n$-dimensional holes. The condition that a property
 should hold for any equal constituents once it has been transported along an equality can be translated
-to stating that each property can be transported along any path in the space. \\
+to stating that each property can be transported along any path in the space.  
 
 Understanding spaces through their points and paths between them is called homotopy theory,\footnote{See
 \cite{Htt} for an introduction.} and our mental image can be formalized into the statement that homotopy
 types can be modeled by topological spaces up to homotopy. It should be stressed that \emph{this is a
-model}. If $s$ and $t$ are constituents which are equal, they obviously cannot be different points in
-a space. However, this model is important as it, conversely, allows us to model geometric shapes through
-equalities. We will return to this. \\
+model}. If $s$ and $t$ are constituents which are equal, they cannot be different points in
+a space, since they then would not share every property. However, this model is important as it, conversely, allows us to model geometric shapes through
+equalities. We will return to this.  
 
 Homotopy theory has been of great use in modern mathematics. Each space can be assigned an underlying
 homotopy type, which captures a lot of information about that space. In a short while we will come across
 homotopy types that have \emph{additional} geometric structure and study how Hegelian thought can be used
-to describe the relationship between a space and its underlying homotopy type. \\
+to describe the relationship between a space and its underlying homotopy type.  
 
 It should be in this way that each equality that has appeared in this exposition up to now is understood,
 not as \emph{saying} that its two expressions are equal, but as explicitly providing an equality that
@@ -441,7 +436,7 @@ with Hegel's dictum on \emph{Verschiedenheit}:
     All things are different; or: there are no two things like each other.
 \end{quote}
 
-Where we identify difference of things $S,T$ with the non-existence of an equivalence between them. \\
+Where difference between things is equated with the non-existence of an equivalence between them.  
 
 A way to express this \emph{Law of Equivalence}\footnote{This is actually the strongest possible form
 of a ``law'' among category-theoreticians that no definition should treat equivalent things differently:
@@ -482,7 +477,7 @@ issue, usually a hierarchy of \emph{Grothendieck universes} $\mathcal{U}_i$ is a
 the previous one, so that the universe $\mathcal{U}_{i+1}$ contains a type $u_i$, which contains
 all types within $\mathcal{U}_i$. We will still denote our universe $\mathcal{U}$ and assume it is one
 of the $\mathcal{U}_{i+1}$ on the ladder of universes, which contains a type of $\mathcal{U}_i$-types $u$.
-\\
+ 
 
 One immediate consequence of the $\emph{Law of Equivalence}$ is a dramatic simplification of the type-theoretic
 universe $\mathcal{U}$, since any equivalent types have to be equal. For comparison, in a model $\mathcal{M}$
@@ -502,7 +497,7 @@ process of derivation runs roughly parallel to the one Hegel sketched from his i
 Logic}. However, the current process is strictly formalized and understandable through a fairly normal
 logical and geometric framework. The notions at the beginning of this process are also what led Lawvere to
 notice the similarity between mathematical structures and Hegel's. We will go through the mathematical
-process and see how well it lines up with that of Hegelwhen we try to identify the resulting mathematical notions with Hegel's (following Schreiber).
+process and see how well it lines up with that of Hegel when we try to identify the resulting mathematical notions with Hegel's (following Schreiber).
 
 
 \subsection{\emph{Sein} and \emph{Nichts}}
@@ -517,7 +512,7 @@ exists, mapping each constituent of $T$ to $*$. This can be thought of as everyt
 equal.\footnote{Please note here that this becoming equal can be understood as projecting all of $T$ onto a 
 single element, or as inserting equalities between any pair of constituents of $T$, inserting equalities 
 between those equalities and so on, until everything is equal. According to homotopy type theory, these two 
-processes are the same.} \\ 
+processes are the same.}   
 
 Next we introduce the \emph{empty type} $\varnothing$. This is a type that contains no constituents and is 
 identified with Hegel's \emph{Nichts} (nothing).\footnote{It should be noted here that there is a canonical 
@@ -533,7 +528,7 @@ $id_\varnothing$, thus the existence of nothing implies the existence of being. 
 Hegel's description of nothing as ``simply equality with itself''.} Inspecting the possibilities for 
 morphisms on $\varnothing$, we notice that a unique morphism exists from the empty type to any other type, 
 with empty source and therefore empty image. This can be taken as a generalization of the logical proposition
-that ``ex falsio quot libet''. \\
+that ``ex falsio quot libet''.  
 
 Though we have introduced $*$ and $\varnothing$ as axioms, we could also \emph{deduce} their existence from 
 that of finite products and coproducts in the universe $\mathcal{U}$ in question, which is equivalent to its 
@@ -543,12 +538,12 @@ as\footnote{This correspondence is original work.}
 
 
 \begin{quote}
-    Sein, reines Sein, \\
+    Sein, reines Sein,  
     ohne alle weitere Bestimmung.
 \end{quote}
 
 \begin{quote}
-    Being, pure being, \\ 
+    Being, pure being,   
     without any further determination.
 \end{quote}
 
@@ -558,7 +553,7 @@ Dually, $\varnothing$ is the coproduct over nothing. Here an interpretation is m
 disjunction in a universe of types is not actually the binary coproduct, but the $(-1)$-truncation of the 
 binary coproduct. For this reason it is better in this context to think of the coproduct over nothing not in 
 terms of propositions but view it as expressing a disjoint union, which means then that $\varnothing$ is the 
-disjoint union of no sets/types. \\
+disjoint union of no sets/types.  
 
 We can now form our first unity of opposites. The left moment will be denoted $\varnothing$ and is defined by
 $\varnothing T:= \varnothing$. Similarly the right moment will be denoted $*$ and is defined by $* T:= *$. 
@@ -586,8 +581,8 @@ and the aspect sequence of the unity of becoming $\varnothing = \varnothing T\ri
 
 \subsubsection{Negatives}
 The existence of $*$ allows us to define another structure we will need later on: From a preceding moment 
-$\Box$, we can form a successive moment $\overline{\Box}$ given by, for each type $T$, the cofiber 
-$\overline{\Box}$ of the morphism $\Box T\rightarrow\ T$, which trivializes the the image of $\Box T$ in $T$ 
+$\unitsq$, we can form a successive moment $\overline{\unitsq}$ given by, for each type $T$, the cofiber 
+$\overline{\unitsq}$ of the morphism $\unitsq T\rightarrow\ T$, which trivializes the the image of $\unitsq T$ in $T$ 
 by collapsing it to a point. This is, perhaps somewhat more loosely, identified with the Hegelian 
 \emph{negative} based on the paragraphs 911:
 
@@ -614,25 +609,25 @@ of the morphism $T\rightarrow \bigcirc T$. However, this fiber depends on a chos
 makes sense on types which have only one constituent (but possibly this constituent has (higher) equalities),
 or, thought of homotopically, have only one connected component. In this case, $\overline{\bigcirc} T$ 
 contains that part of the structure of $T$ that is trivialized by $T\rightarrow\bigcirc T$. Note that 
-$\overline{\Box}$ and $\Box$ (or the dual notions) do \emph{not} form a unity of oppositions. However, for 
-each object $T$, a sequence $\overline{\Box} T \rightarrow T \rightarrow \Box T$ exists and this sequence 
+$\overline{\unitsq}$ and $\unitsq$ (or the dual notions) do \emph{not} form a unity of opposites. However, for 
+each object $T$, a sequence $\overline{\unitsq} T \rightarrow T \rightarrow \unitsq T$ exists and this sequence 
 \emph{decomposes} each $T$, in the sense that $T$ could be reconstructed from its aspects under a moment and 
-its negative, as well as their relation. This is not generally true for unities of oppositions.
+its negative, as well as their relation. This is not generally true for unities of opposites.
 
 
 
 \subsection{Quantity and Quality}
 Given the unity of becoming $\varnothing\dashv *$, we can now derive a sequence of new unities starting with 
 its minimal Aufhebung. We begin this sequence of derivations with the smallest moment that contains both 
-$\varnothing$ and $*$, which is the \emph{double negation} modality \cite{Sketches}.\footnote{This terminology
+$\varnothing$ and $*$, which is the \emph{double negation} modality, mapping a type $T_{p}$ of reasons a proposition $p$ is true to the type $T_{¬¬p}$ of reasons its double negation is true. \cite{Sketches}.\footnote{This terminology
 stems from mathematical logic and is not to be confused with the Hegelian negative.} The sub-universe 
 $\mathcal{U}_\sharp$ that is invariant under $\sharp$ is the largest sub-universe in which the law of the 
 excluded middle holds. Thus, if our new unity is supposed to be non-trivial, the internal logic of our 
 universe $\mathcal{U}$ cannot be classical. \emph{If the law of the excluded middle is assumed to hold 
 universally, then the entire sequence of structures we are about to derive collapses into triviality}. We 
-will henceforth assume that the internal logic we are operating in is \emph{intuitionistic}, which is like 
+will therefore assume that the internal logic we are operating in is \emph{intuitionistic}, meaning it is like 
 classical logic but without the law of the excluded middle. The action of the double negation modality can 
-again be understood both from an internal and an external perspective. \\
+again be understood both from an internal and an external perspective.  
 
 Internally, say a type $T$ is the context we are operating in, and a proposition $p$ defines the largest 
 sub-context $U\hookrightarrow T$ in which it holds. Then the negation $\neg p$ of $p$ similarly defines the 
@@ -644,11 +639,11 @@ of points. This is a kind of \emph{spatial} structure, which is not just determi
 beyond them, kinds of local neighborhoods of points that build up the spatial structure of $T$. $U$ and 
 $\neg_T U$ slice up $T$ between them but in doing so cut out the spatial structure that connects them. The 
 double negation $\neg\neg T$ of $T$ is then a space with the same constituents as $T$, but where no 
-information is lost by slicing it up, so that the spatial structure between any constituents of $T$ is 
-trivial in some way. \\
+information is lost by slicing it up, which implies that the spatial structure between any constituents of $T$ is 
+trivial in some way.  
 
-Externally, since in intuitionistic logic it is assumed that a proposition implies its double negative even 
-if the law of the excluded middle is not, each constituent $t$ of a type $T$ which contains the reasons a 
+Externally, since in intuitionistic logic it is assumed that a proposition implies its double negation even 
+if the law of the excluded middle is not, each constituent $t$ of a type $T$, which contains the reasons a 
 proposition $p$ is true, gives rise to a reason $\sharp_T (t):\sharp T$ for why $\neg\neg p$ is true. This 
 mapping constitutes the morphism $T \rightarrow \sharp T$ that is the expression of $p\Rightarrow\neg\neg p$.
 If $t_1$ and $t_2$ are non-equal constituents of $T$ corresponding to reasons for $p$, then $\sharp_T (t_1)$
@@ -662,7 +657,7 @@ can be measured by the amount of non-equal types $T$ that are mapped to the same
 the amount of different spatial structures that can be put onto the same points. Furthermore, since each 
 $T$ maps to its double negation, $\sharp T$ must have the coarsest possible geometry among all types that it is the double negation of, in the sense that any morphism 
 $m$ into any $T$ yields a map into its double negation,
-given by its composition with the double negation morphism $m;\sharp_T$. This means that no spatial means can
+given by its composition with the double negation morphism $m\fcmp \sharp_T$. This means that no spatial structure can
 exist to distinguish the points of $\sharp T$, they all exist in the same place, but they are not equal, so
 that any morphism into $T$ is already \emph{continuous}. \emph{So the failure of the 
 law of the excluded middle in a context $T$ lies precisely in the geometry of $T$.} This state of affairs fits remarkably well Hegel's description of continuity:
@@ -676,7 +671,7 @@ law of the excluded middle in a context $T$ lies precisely in the geometry of $T
 \end{quote}
 
 We will therefore call $\sharp$ the \emph{moment of continuity}. We'll furthermore call our types 
-\emph{spaces} and denote them by $X$ to remind us of their spatial structure. More abstractly, the moment of 
+\emph{spaces} from now on and denote them by $X$ to remind us of their spatial structure. More abstractly, the moment of 
 continuity can be described as extracting from each space its points and collapsing them to the same place. 
 Similarly, its opposite, $\flat$, if it exists (which we demand it does), trivializes the spatial 
 $X$-structure by extracting the points of $X$ and putting each into its own piece of space, completely disconnected 
@@ -710,7 +705,7 @@ values of their points. These objects\footnote{As well as their subobjects.} are
 negative $\overline{\sharp} X$ of $\sharp X$ consists purely of the structure that makes $X$ spatial, thus 
 the local aspects of $X$. So these are identified with \emph{extensive quantities}. A morphism on a space $X$
 into an intensive quantity $\sharp X$ can be described as something that associates to each point of $X$ a
-quantity, while a function into $\overline{\sharp} X$ associates a quantity to volumina of $X$. \\
+quantity, while a function into $\overline{\sharp} X$ associates a quantity to volumina of $X$.  
 
 One way to 
 understand how intensive and extensive quantities work is in relation to the decomposition of a system into
@@ -726,23 +721,23 @@ intensive quantities are qualities}.\footnote{This identification is original wo
 our intuition. For instance, color, understood as the wavelength of light, is an intensive quantity. However,
 we intuitively refer to an object as having a specific color if and only if all of its parts have the same 
 color. Finally, both $\sharp$ and $\flat T$ express the \emph{cardinality} of $X$, in its discrete and
-continuous form, so the description of this unity as quantity seems justified. \\
+continuous form, so the description of this unity as quantity seems justified.  
 
 The $\flat$-moment is also identified with the \emph{moment of repulsion} as in Hegel §342 and §343:
 
 \begin{quote}
-    ...so stößt das Eins sich selbst von sich ab. Die negative Beziehung des Eins auf sich ist Repulsion. \\
+    ...so stößt das Eins sich selbst von sich ab. Die negative Beziehung des Eins auf sich ist Repulsion.  
 
     Diese Repulsion, so als das Setzen der vielen Eins aber durch Eins selbst ist das eigne Außersichkommen des Eins, aber zu solchen außer ihm, die selbst nur Eins sind. Es ist dieß die Repulsion dem Begriffe nach, die an sich seyende. Die zweite Repulsion ist davon unterschieden, und ist die der Vorstellung der äußern Reflexion zunächst vorschwebende, als nicht das Erzeugen der Eins, sondern nur als gegenseitiges Abhalten vorausgesetzter, schon vorhandener Eins. Es ist dann zu sehen, wie jene an sich seyende Repulsion zur zweiten, der äußerlichen, sich bestimmt.
 \end{quote}
 
 \begin{quote}
-    ...the one repels itself from itself. The negative relation of the one to itself is repulsion.\\
+    ...the one repels itself from itself. The negative relation of the one to itself is repulsion. 
     
     This repulsion as thus the positing of many ones but through the one itself, is the one’s own coming-forth-from-itself but to such outside it as are themselves only ones. This is repulsion according to its Notion, repulsion in itself. The second repulsion is different from it, it is what is immediately suggested to external reflection: repulsion not as the generation of ones, but only as the mutual repelling of ones presupposed as already present.
 \end{quote}
 
-and has its own left opposite $\textrm{\textesh}\dashv\flat$, so that $\textrm{\textesh}$ is, as by Hegel 
+and has its own left opposite $\textrm{∫}\dashv\flat$, so that $\textrm{∫}$ is, as by Hegel 
 §395
 
 \begin{quote}
@@ -753,16 +748,16 @@ and has its own left opposite $\textrm{\textesh}\dashv\flat$, so that $\textrm{\
     Attraction is in this way the moment of continuity in quantity.
 \end{quote}
 
-identified with the \emph{moment of attraction}. Since $\textrm{\textesh}\dashv\flat$ is an $sp$-unity, 
-$\textrm{\textesh}$ lands in the same spaces as $\flat$, so a space $\textrm{\textesh} X$ is discrete. In 
+identified with the \emph{moment of attraction}. Since $\textrm{∫}\dashv\flat$ is an $sp$-unity, 
+$\textrm{∫}$ lands in the same spaces as $\flat$, so a space $\textrm{∫} X$ is discrete. In 
 models we will demand that the modality 
-$\textrm{\textesh}$ is the localization of the path object of the topos, in the sense that $\textrm{\textesh} X$ contracts all points that are connected to each other through a path to the same point, so $\textrm{\textesh}X$ becomes discrete, it remembers each path between points as an equality in its homotopical \emph{shape}, as in Section
+$\textrm{∫}$ is the localization of the path object of the topos, in the sense that $\textrm{∫} X$ contracts all points that are connected to each other through a path to the same point, so $\textrm{∫}X$ becomes discrete, it remembers each path between points as an equality in its homotopical \emph{shape}, as in Section
 \ref{Hott}.\footnote{This interaction between the two different spatial structures of $X$,
 that of its local structure (which is induced by its local elements) and its structure of homotopic equality,
 is of crucial importance in topology.} Thus, the moment of attraction can be understood as the internal
 contraction within the fabric of $X$ taking over and $X$ contracting as much as possible while still not
-losing its shape. The unity of opposites $\textrm{\textesh}\dashv\flat$, and, more concretely, the
-\emph{points to pieces transform} $\flat X\rightarrow X\rightarrow \textrm{\textesh} X$ can be understood as
+losing its shape. The unity of opposites $\textrm{∫}\dashv\flat$, and, more concretely, the
+\emph{points to pieces transform} $\flat X\rightarrow X\rightarrow \textrm{∫} X$ can be understood as
 describing ``the difference of the one and the many'' as in Hegel §361:
 
 \begin{quote}
@@ -773,8 +768,7 @@ describing ``the difference of the one and the many'' as in Hegel §361:
     The difference of the one and the many is now determined as the difference of their relation to one another, with each other, a relation which splits into two, repulsion and attraction, each of which is at first independent of the other and stands apart from it, the two nevertheless being essentially connected with each other. Their as yet indeterminate unity is to be more precisely ascertained.
 \end{quote}
 
-and is identified with \emph{quality}, as it captures the quality that makes a space $X$ different from a
-homotopy type. Overall, the system of modalities $\textrm{\textesh}\dashv\flat\dashv\sharp$ has been termed
+and is identified with \emph{quality}, as, on the one hand, the $∫$-aspect of a type captures the quality of its shape, on the other hand its negative captures what makes it different from simply being the homotopy type of its shape. Overall, the system of modalities $\textrm{∫}\dashv\flat\dashv\sharp$ has been termed
 \emph{cohesion} and the objects it acts on as \emph{cohesive substance} by Lawvere,\cite{Coh}\footnote{More
 precisely, Lawvere defined the functors underlying the modalities, Schreiber identified them with
 modalities.} and identified by Schreiber with \emph{measure} as in Hegel 699:
@@ -787,10 +781,10 @@ modalities.} and identified by Schreiber with \emph{measure} as in Hegel 699:
     Abstractly expressed, in measure quality and quantity are united.
 \end{quote}
 
-and indeed $\textrm{\textesh}$ is a generalization of the Euler characteristic and the tools within this unity are already enough to define a very general notion of an integral\cite{Nlabintegral}.
+and indeed $\textrm{∫}$ is a generalization of the Euler characteristic and the tools within this unity are already enough to define a very general notion of an integral\cite{Nlabintegral}.
 
 \subsection{The Aufhebung of Finiteness}
-Next we introduce an Aufhebung of the last derived unity $\textrm{\textesh}\dashv\flat$ given by an
+Next we introduce an Aufhebung of the last derived unity $\textrm{∫}\dashv\flat$ given by an
 $sp$-unity $ \Im\dashv\&$:
 
 
@@ -800,12 +794,12 @@ $$
      \\
      \vee && \vee
      \\
-    \textrm{\textesh} &\dashv& \flat
+    \textrm{∫} &\dashv& \flat
     \end{array}
 $$
 
-Since $\Im\dashv\&$ is a higher sphere than $\textrm{\textesh}\dashv\flat$, the morphism $X\rightarrow
-\textrm{\textesh} X$ factors through $\Im$: $X\rightarrow\Im X\rightarrow\textrm{\textesh} X$. Thus, $\Im X$
+Since $\Im\dashv\&$ is a higher sphere than $\textrm{∫}\dashv\flat$, the morphism $X\rightarrow
+\textrm{∫} X$ factors through $\Im$: $X\rightarrow\Im X\rightarrow\textrm{∫} X$. Thus, $\Im X$
 can be understood as a contraction of $X$, where $X$ is not contracted down to its basic shape, but only
 ``small'' paths in $X$ are contracted. More precisely, what is contracted are \emph{infinitesimal paths},
 and, correspondingly, the negative $\overline{\Im} X$ of $\Im$ on a connected space is the \emph{purely
@@ -827,19 +821,19 @@ which is fairly on point: the \emph{reduced} part $\Re X$ of a space $X$ is the 
 X\rightarrow X$. Accordingly, the types purely of the negative $\overline{\Im}$ of $\Im$ are precisely
 infinitesimally thickened points. So both $\Re$ and $\Im$ are ways of trivializing infinitesimal structure,
 but, just like with $\flat$ and  $\sharp$, are trivializing it in opposite ways: $\Re X$ contains the core of
-$X$ that is spanned by its real part, but in this core infinitesimal structure is still contained, as long as it is induced by real structure. $\Im$ meanwhile identifies the infinitesimal neighborhoods of any points in $X$ with each other, thereby contracting $X$ to a shape that is \emph{infinitesimally flat} or \emph{crystalline}: every morphism from an infinitesimally thickened point to an $\Im$-modal space has to be constant. This is not true for $\Re$-modal spaces. \\ 
+$X$ that is spanned by its real part, but in this core infinitesimal structure is still contained, as long as it is induced by real structure. $\Im$ meanwhile identifies the infinitesimal neighborhoods of any points in $X$ with each other, thereby contracting $X$ to a shape that is \emph{infinitesimally flat} or \emph{crystalline}: every morphism from an infinitesimally thickened point to an $\Im$-modal space has to be constant. This is not true for $\Re$-modal spaces.   
 
 The unity $\Im\dashv\&$ is identified with \emph{ideality} as the Aufhebung of quality, as in Hegel 305,
 where \emph{infinite} is taken to mean \emph{infinitesimal} i.e. infinitely small:
 
 \begin{quote}
-    In Beziehung auf Realität und Idealität wird aber der Gegensatz des Endlichen und Unendlichen so gefaßt, daß das Endliche für das Reale gilt, das Unendliche aber für das Ideelle gilt; wie auch weiterhin der Begriff als ein Ideelles und zwar als ein nur Ideelles, das Daseyn überhaupt dagegen als das Reale betrachtet wird... \\
+    In Beziehung auf Realität und Idealität wird aber der Gegensatz des Endlichen und Unendlichen so gefaßt, daß das Endliche für das Reale gilt, das Unendliche aber für das Ideelle gilt; wie auch weiterhin der Begriff als ein Ideelles und zwar als ein nur Ideelles, das Daseyn überhaupt dagegen als das Reale betrachtet wird...  
 
     Die Idealität kann die Qualität der Unendlichkeit genannt werden; aber sie ist wesentlich der Proceß des Werdens und damit ein Übergang, wie des Werdens in Daseyn, der nun anzugeben ist. Als Aufheben der Endlichkeit, d. i. der Endlichkeit als solcher und ebenso sehr der ihr nur gegenüberstehenden, nur negativen Unendlichkeit ist diese Rückkehr in sich, Beziehung auf sich selbst, Seyn. Da in diesem Seyn Negation ist, ist es Daseyn, aber da sie ferner wesentlich Negation der Negation, die sich auf sich beziehende Negation ist, ist sie das Daseyn, welches Fürsichseyn genannt wird.
 \end{quote}
 
 \begin{quote}
-    With reference to reality and ideality, however, the opposition of finite and infinite is grasped in such a manner that the finite ranks as the real but the infinite as the ‘ideal’ [das Ideelle]; in the same way that further on the Notion, too, is regarded as an ‘ideal’, that is, as a mere ‘ideal’, in contrast to determinate being as such which is regarded as the real... \\
+    With reference to reality and ideality, however, the opposition of finite and infinite is grasped in such a manner that the finite ranks as the real but the infinite as the ‘ideal’ [das Ideelle]; in the same way that further on the Notion, too, is regarded as an ‘ideal’, that is, as a mere ‘ideal’, in contrast to determinate being as such which is regarded as the real...  
     
     Ideality can be called the quality of infinity; but it is essentially the process of becoming, and hence a transition — like that of becoming in determinate being — which is now to be indicated. As a sublating of finitude, that is, of finitude as such, and equally of the infinity which is merely its opposite, merely negative, this return into self is self-relation, being. As this being contains negation it is determinate, but as this negation further is essentially negation of the negation, the self-related negation, it is that determinate being which is called being-for-self.
 \end{quote}
@@ -875,17 +869,17 @@ This identification is connected to Hegel's critique of atomism:
 Here, the \emph{one} is identified with the smallest unit of a space, while \emph{atoms} are identified with
 its points. The complaint is then that a space is not just made up of its points but these points
 are connected by \emph{ideal} structure.\footnote{See also §254b and §256b in \emph{Philosophy of Nature}.}
-This is precisely the approach of synthetic differential geometry. \\
+This is precisely the approach of synthetic differential geometry.  
 
 Since the unity $\Im\dashv\&$ expresses \emph{ideality}, its opposite $\Re\dashv\Im$ expresses
 \emph{reality}. A system of such modalities $\Re\dashv\Im\dashv\&$ is called \emph{differential cohesion} and
 its objects \emph{elastic substance}. Notice the similarities and differences between $\Re\dashv\Im\dashv\&$
-and $\textrm{\textesh}\dashv\flat\dashv\sharp$: in particular, both contain a kind of shape modality, but in
+and $\textrm{∫}\dashv\flat\dashv\sharp$: in particular, both contain a kind of shape modality, but in
 one it is the leftmost, in the other it is in the middle. Meanwhile, the reduction modality seems to have no
 equivalent in the cohesive context. This fits with the nature of Aufhebung: we have already analyzed how the
-containment $\textrm{\textesh}<\Im$ of the shape modality in the infinitesimal shape modality necessitates
+containment $\textrm{∫}<\Im$ of the shape modality in the infinitesimal shape modality necessitates
 the conclusion that the infinitesimal shape modality equalizes certain paths, it stands to reason that
-similarly the containment of both $\textrm{\textesh}$ and $\flat$ in $\&$ implies that $\&$ is shares aspects
+similarly the containment of both $\textrm{∫}$ and $\flat$ in $\&$ implies that $\&$ is shares aspects
 of both. However, $\&$ can also be understood through its position as the rightmost member in a unity of
 unities, which makes it similar to $\sharp$ in that both are related to the \emph{classification} of
 quantities. It has been found that certain spaces $F$ classify physical fields in the sense that a field
@@ -894,10 +888,10 @@ $\mathcal{F}$ on a space $X$ corresponds to a morphism from $X$ into a certain o
 can only mention in passing but see \cite{dcct}.} If $F$ is the classifying space of some type of field,
 then a morphism $f:X\rightarrow \& F$ corresponds to a morphism $\overline{f}:\Im X\rightarrow F$, so the
 field classified by $f$ is given by the field on its infinitesimal shape $\Im X$, extended it a trivial way
-to the entirety of $X$.   \\
+to the entirety of $X$.    
 
 In this elastic structure, notions such as distance and angle can be derived, so this is the first sphere in
-which Euclidean geometry exists. Furthermore, large swaths of theory, that would take several semesters to
+which Euclidean geometry exists. Furthermore, large swaths of theory that would take several semesters to
 introduce in a classical manner, can elegantly be defined the using these modalities.
 
 
@@ -944,17 +938,17 @@ which is a fairly good description of bosons considering only light was the only
 Meanwhile, the fermionic modality is identified with \emph{rigidity} as in PN§279 of PoN:
 
 \begin{quote}
-    Das Dunkle, zunächst das Negative des Lichts, ist der Gegensatz gegen dessen abstrakte-identische Idealität, – der Gegensatz an ihm selbst; er hat materielle Realität under zerfällt in sich in die Zweihet, $\alpha$) der körperlichen Verschiedenheit, d.i. des materiellen Fürsichseins, der Starrheit, $\beta$) der Entgegensetzung.
+    Das Dunkle, zunächst das Negative des Lichts, ist der Gegensatz gegen dessen abstrakte-identische Idealität, – der Gegensatz an ihm selbst; er hat materielle Realität und er zerfällt in sich in die Zweihet, $\alpha$) der körperlichen Verschiedenheit, d.i. des materiellen Fürsichseins, der Starrheit, $\beta$) der Entgegensetzung.
 \end{quote}
 
 \begin{quote}
     Darkness, as immediately the negative of light, is the opposition to light’s abstractly identical ideality; it is this opposition in its own self. It has material reality and falls apart into a duality, namely (1) corporeal difference, i.e. material being-for-self, rigidity; (2) opposition...
 \end{quote}
 
-or, more generally, \emph{matter}. \\
+or, more generally, \emph{matter}.  
 
 Compare again the newly derived unity of unities to its predecessors. Like
-$\textrm{\textesh}\dashv\flat\dashv\sharp$, and unlike $\Re\dashv\Im\dashv\&$, it consists of an opposition of an
+$\textrm{∫}\dashv\flat\dashv\sharp$, and unlike $\Re\dashv\Im\dashv\&$, it consists of an opposition of an
 $sp$-unity to a $ps$-unity. Again, the middle modality $\rightsquigarrow$ functions most obviously similar to
 its lower counterpart, the reduction modality $\Re$. The rightmost modality in all three cases is linked to the classification of quantities. This time, the \emph{rheonomic} modality $Rh$ classifies fields on spaces $X$ that
 are trivially extended from the bosonic sub-space $\rightarrow X$ to the entirety of $X$. 
@@ -1019,7 +1013,7 @@ the properties that are demanded by $M$-theory, the joint generalization of stri
 Our physical universe would then be determined by some manifold in $\infty-SFS$ or some extension thereof,
 with some force field on it that is the unified fundamental force which manifests as the four fundamental
 forces of our universe after $M$ through a process called $KK$-compactification, which yields the four-dimensional
-spacetime we all know and love. \\
+spacetime we all know and love.  
 
 At this point mathematics becomes difficult to avoid. However, it should be noted that a conjecture by Sati and Schreiber called \emph{Hypothesis H}, based on the observations by Sati in \cite{Sati}, states that such a field would be described by a cycle in the fourth
 differential equivariant $J$-twisted cohomotopy on $X$, so a differential equivariant refinement of a section
@@ -1063,7 +1057,7 @@ a superficial manner. This has to be compared to descriptions of equivalent stru
 mathematics, which seem arbitrary and cumbersome. Indeed, the ever more impenetrable nature of conventional
 physics has given rise to a pessimism that the structure of the universe might not conform to our inherent
 notions of beauty and elegance. This new and highly intuitive path to a model of the universe challenges
-this resignation. \\
+this resignation.  
 
 
 \subsection{What is to be done}
@@ -1073,14 +1067,14 @@ by Urs Schreiber and his associates. However, the formalization of Hegel's thoug
 challenge to both his followers and his detractors that has largely gone unnoticed. Both analytical and
 Marxist philosophers were quick to dismiss Hegel's metaphysical speculations. Now that these cryptic 
 metaphysics have shown themselves capable to be interpreted through formally exact logic, these dismissals should
-be reconsidered. \\
+be reconsidered.  
 
 The challenge extends however to the Hegelians themselves. As it stands, Hegelian dialectics can mean
 almost anything, depending on who is asked. While this formalization cannot capture all dialectic reasoning,
 as formal logic cannot ever capture all logical reasoning, it might provide at least a standard that can
 universally be understood in the same way, so that different dialectic interpretations can be compared
 through their differences to the common logical method. On a more immediate level, the current dictionary
-should be checked, compared and extended \emph{also} by philosophers. \\
+should be checked, compared and extended \emph{also} by philosophers.  
 
 Finally, the simplicity of cohesion, combined with its power in expressing even otherwise obscure mathematical
 and physical concepts, might provide a path to bridge the divide between mathematics and physics on the
@@ -1099,3 +1093,17 @@ title={References}
 
 \end{document}
 
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
+
+
+\subsection{Geometric Interpretation}
+\label{"waiting for reftex-label call..."}
+While it is somewhat reductive, the following geometric interpretation, which is original work, is mathematically strict and can be used as a visualization of the concepts involved. A unity of opposites can be thought of as a line
+
+[insert image]
+
+with the opposites being the end points of the line, spanning between each other the category $C$ while being the same as abstract points. A unity of unities can then be thought of as a further line ending in one of the end points of
